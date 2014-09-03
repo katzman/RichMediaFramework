@@ -26,9 +26,11 @@ package com.richMedia.managers
         public static function getBitmap( id:String ):Bitmap
         {
             var imageDataClass:Class = Class( getDefinitionByName( id ) );
-	        if( !imageData ) return null;
+	        if( !imageDataClass ) return null;
 
             var imageData:BitmapData = new imageDataClass() as BitmapData;
+            if( !imageData ) return null;
+
             var image:Bitmap = new Bitmap( imageData );
 
             return image;
@@ -63,6 +65,7 @@ package com.richMedia.managers
 	        if( !objClass ) return null;
 
             var obj:Object = new objClass() as Object;
+            if( !obj ) return null;
 
             return obj;
         }
