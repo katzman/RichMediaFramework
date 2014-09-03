@@ -1,22 +1,24 @@
 /** ShowHideComponent
  * -------------------------------------------------------------------------------------
  * @ description: uses on mouse move event to decide if the mouse is currently over a display object. 
- *   This can be used when the display object has nested buttons that the mouse needs to have access to. Good for showing and hiding video controls. 
- * 	 Add a display object, set it's size and position, pass it through the constructor and an event will fire when your over it and off it. 
+ * This can be used when the display object has nested buttons that the mouse needs to have access to. Good for showing and hiding video controls.
+ * Add a display object, set it's size and position, pass it through the constructor along with a mouse off display object, "this" as a referance
+ * to the entire banner usually works fine, don't always have access to stage, an event will fire when your over it and off it. If you pass a rollOff
+ * time value in seconds then if the mouse stays over the object it will fire the off after the mouse stops for the specified amount of time.
  * 
  * @ usage: 
- * 	var showMC:MovieClip = videoComponent_mc.controlsComponent_mc.show_mc;
- •	var showHideComp:ShowHideComponent = new ShowHideComponent( showMC );
- • 	showMC.addEventListener( ShowHideComponent.OVER, showControls );
- •	showMC.addEventListener( ShowHideComponent.OFF,  hideControls );
+ * var showMC:MovieClip = videoComponent_mc.controlsComponent_mc.show_mc;
+ * var showHideComp:ShowHideComponent = new ShowHideComponent( showMC, this );
+ * showMC.addEventListener( ShowHideComponent.OVER, showControls );
+ * showMC.addEventListener( ShowHideComponent.OFF,  hideControls );
  *  
  * @ developer: Neil Katz
- * @ version: 1.0.0  05.05.2014
+ * @ version: 2.0.0  05.05.2014
  * -------------------------------------------------------------------------------------
  * */
 
 
-package com.blt.components
+package com.richMedia.components
 {
 
     import flash.display.DisplayObject;
@@ -39,9 +41,9 @@ package com.blt.components
 		
 		public function ShowHideComponent( _target:DisplayObject, _mouseTarget:DisplayObject, _rollOffTime:Number = -1 )
         {
-			if( !_target )
+			if( !_target || !_mouseTarget )
 			{
-				throw new Error( "ALARM!!! :: SHOW / HIDE COMPONENT :: CONSTRUCTOR :: NO TARGET MOVIECLIP SET" );
+				throw new Error( "ALARM!!! :: SHOW / HIDE COMPONENT :: CONSTRUCTOR :: NO TARGET OR MOUSE TARGET MOVIECLIP SET" );
 			}
 						
 			trace("***************************************************");
