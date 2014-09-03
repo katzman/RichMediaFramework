@@ -1,0 +1,105 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww19020\viewh19720\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+
+\f0\b\fs44 \cf0 ShowHideComponent set up. \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sa120\pardirnatural\qc
+
+\fs28 \cf0 for version 1.0.0
+\fs44   \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0\fs36 \cf0 This is to be used to find out if the cursor is over a display object without blocking mouse events from embedded buttons / controls that may be inside that display object. Great for showing and hiding controls for video players. 
+\b\fs44 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+
+\b0\fs24 \cf0 ---------------------------------------------------------------------------------------------------------------------
+\b\fs44 \
+
+\fs28 IMPORTS: \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 In the fla you only need to import 1 class, nothing gets added to the library.
+\fs24 \
+import com.blt.components.ShowHideComponent;\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------\
+
+\b\fs28 PUBLIC PROPERTIES:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 These are read only values, you can't set them.  
+\fs24 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 OVER:String = "over"\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 Event id string for when the cursor is over the target object
+\b \
+\
+OFF:String = "off"\
+
+\b0 Event id string for when the cursor is off the target object\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------\
+
+\b\fs28 PUBLIC METHODS:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\fs24 \cf0 \
+ShowHideComponent( _target:DisplayObject, _rollOffTime:Number = -1 ):void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 When you initialize the constructor you need to pass the display object that you want to track mouse over and mouse off. This object should be a movie clip, just pass the path to the actual object using it's instance name and add event listeners to that object for OFF and OVER.  The roll off time value is in seconds, it sets a timer that will fire the off event if the mouse stops moving for the time value passed. 
+\b \
+\
+\
+
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------\
+
+\b\fs28 SET UP:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0\fs24 \cf0 // add import
+\b\fs28 \
+
+\b0\fs24 import com.blt.components.ShowHideComponent;\
+\
+// assign instances to variables, makes referencing them easier. \
+var controlsMC:MovieClip = videoComponent_mc.controlsComponent_mc.controls_mc;\
+var showMC:MovieClip = videoComponent_mc.controlsComponent_mc.show_mc; // this is the movie clip that we are using to check if the mouse is over or off it. \
+\
+// initialize the constructor\
+var showHideComp:ShowHideComponent = new ShowHideComponent( showMC );\
+\
+// add listeners\
+showMC.addEventListener( ShowHideComponent.OVER, showControls );\
+showMC.addEventListener( ShowHideComponent.OFF,  hideControls );\
+\
+\
+function showControls( e:Event = null ):void \
+\{\
+	trace( "SHOW CONTROLS" );\
+	if( videoComponent_mc.controlsComponent_mc.currentFrame == 1 ) videoComponent_mc.controlsComponent_mc.gotoAndPlay( "over" );\
+\}\
+\
+function hideControls( e:Event = null ):void \
+\{\
+	trace( "HIDE CONTROLS" );	\
+	if( videoComponent_mc.controlsComponent_mc.currentFrameLabel == "shown" ) videoComponent_mc.controlsComponent_mc.gotoAndPlay( "off" );\
+\}}

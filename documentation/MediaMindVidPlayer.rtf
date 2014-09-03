@@ -1,0 +1,902 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww17480\viewh19540\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+
+\f0\b\fs44 \cf0 Media Mind Video Player set up.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sa120\pardirnatural\qc
+
+\fs28 \cf0 for version 1.0.0
+\fs44   \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+
+\b0\fs24 \cf0 ---------------------------------------------------------------------------------------------------------------------
+\b\fs44 \
+
+\fs28 IMPORTS: \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 In the fla you only need to import two classes, the player and the video wrapper event class. 
+\fs24 \
+import com.blt.video.mediamind.MMVideoPlayerV2;\
+import com.blt.events.BltVideoEvent;\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------
+\b\fs44 \
+
+\fs28 LIBRARY IMPORTS: \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 From the component folder /MediaMind Video, include the following in the fla library only. Do not put them on the stage. 
+\fs24 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 \'95\'a0VideoScreen
+\b0 \
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------
+\b\fs28 \
+VIDEO PLAYER EVENTS:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 All video events return a value for the current video ( event.data.videoID ) and current player ( event.data.playerID ). Video events only fire from the video player instance, they will not bubble. All your listeners must be attached directly to the player instance.
+\fs24 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b VIDEO_READY: 
+\b0 Fired when init is called.\cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95 VIDEO_PLAYING: 
+\b0 Fired every time video starts playing or resume playing. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b PLAY_WITH_SOUND_CALLED:
+\b0  Fired when replayWithSound is called. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95
+\b0 \'a0
+\b VIDEO_MUTED:
+\b0  Fired when muteAudio is called. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95 
+\b VIDEO_UNMUTED:
+\b0  Fired when unmuteAudio is called. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b VIDEO_PAUSED: 
+\b0 Fired when pauseVideo is called.\cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b VIDEO_RESUMED: 
+\b0 Fired when continues to play.\cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b VIDEO_STOPPED:
+\b0  Fired when stopVideo is called.\cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b VIDEO_CLEARED: 
+\b0 Fired when clearVideoPlayer is called.\cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95 VIDEO_LOOP COMPLETE:
+\b0  Fired when all video loops have completed. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b VIDEO_STARTED:
+\b0  Fired when video meta data has loaded, this means the video is ready to play and will start unless paused at start is set. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b UPDATE_VIDEO_ID:
+\b0  Fired when the videoReportingID has changed, this happens when a new video is loaded. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b VIDEO_BUFFER_EMPTY: 
+\b0 Fired when first starts.\cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b VIDEO_BUFFER_FULL: 
+\b0 Fired when buffer is full.\cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \'95\'a0
+\b SHOW_BUFFERING:
+\b0  Fired when video is buffering. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95 HIDE_BUFFERING:
+\b0  Fired when video is done buffering. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95\'a0VIDEO_COMPLETE:
+\b0  Fired when current video is done playing. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clheight274 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clheight274 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clheight274 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95\'a0VIDEO_ERROR: 
+\b0 Fired when video failed for some reason. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95\'a0VIDEO_BYTES_LOADED: 
+\b0 Fired as the video is being loaded, will pass a event.data.bytesLoaded value that is between 0 and 1.\cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95\'a0VIDEO_PROGRESS: 
+\b0 Fired as video plays, passes a event.data.progress value that is between 0 and 1.\
+
+\b \'95\'a0VIDEO_ON_CUEPOINT: 
+\b0 Fired when the video has reached a cue point that is embedded in the video. The cue point data object is passed through the event, cuepoint:Object = event.data.pointObj, this object will contain all the cue point data from the video. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95\'a0VIDEO_0_PERCENT: 
+\b0 Fired when video first starts.\cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95\'a0VIDEO_25_PERCENT: 
+\b0 Fired when video is at 25% progress. \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95\'a0VIDEO_50_PERCENT: 
+\b0 Fired when video is at 50% progress.  \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95\'a0VIDEO_75_PERCENT: 
+\b0 Fired when video is at 75% progress.  \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth500\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9920\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth460\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb140
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb140
+
+\b \cf0 \'95\'a0VIDEO_100_PERCENT: 
+\b0 Fired when video is at 100% progress.  \cell 
+\pard\intbl\itap1\pardeftab720\sl288\slmult1
+\cf0 \cell \lastrow\row
+\pard\pardeftab720
+
+\b \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\fs28 \cf0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+
+\b0\fs24 \cf0 ---------------------------------------------------------------------------------------------------------------------
+\b\fs28 \
+VIDEO TARGET MOVIE CLIP:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 The video target movie clip is the display object that the video will be attached to. It should not be scaled but should contain a shape or graphic that is the size of the video. The player will get the video size from the target movie clip. It has to exist on the stage at the same time the video player is initialized. It can be nested in other movie clips. This movie clip will be passed through the video players constructor. 
+\fs24 \
+\
+var vidPlayer:MMVideoPlayerV2 = new MMVideoPlayerV2( 
+\b videoTarget_mc 
+\b0 );\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b\fs28 \cf0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+
+\b0\fs24 \cf0 ---------------------------------------------------------------------------------------------------------------------
+\b\fs28 \
+VIDEO PLAYER CONSTRUCTOR VALUES:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 You can pass several values through the constructor when you init the player. Only the video target is required, the rest can be left out, they have default values that will be used if no value is passed.
+\fs24 \
+\
+var vidPlayer:MMVideoPlayerV2 = new MMVideoPlayerV2( 
+\b _videoTarget:MovieClip, _startMuted:Boolean = true, _useTunein:Boolean = false, _streaming:Boolean = false, _streamingPath:String = ""
+\b0  );
+\fs22 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b\fs24 \cf0 _videoTarget:MovieClip\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This is described above in 
+\b "VIDEO TARGET MOVIE CLIP".\
+\
+_startMuted:Boolean = true\
+
+\b0 This is a true false value, the default is to start the video muted, sound can be turned on after using either controls or setting the value to the player directly, 
+\b vidPlayer.unmuteAudio(); 
+\b0 This will also update the sound control button if it is being used. If you want the video to start with audio on then pass false. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 _useTunein:Boolean = false\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This value is false by default. It tells the player to use date coded videos using the TuneIn class. If the videos aren't date coded or your using your own tune in logic then leave it as false. If your using the TuneIn class and the videos have a date coded value when passed to the player then set to true. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 _streaming:Boolean = false
+\b0 \
+This value sets up the player to stream the video instead of a progressive download. This is actually optional for Media Mind, their player sniffs the video path and server connection and decides how best to handle it. \
+\
+
+\b _streamingPath:String\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This is optional for streaming, you can pass the full rtmp path with each video or pass a path to the video folder here. \
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------\
+
+\b\fs28 VIDEO PLAYER PUBLIC PROPERTIES:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 Once the player is defined you can set other properties that are listed below. 
+\fs24 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 playerID:String = "default"\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This is the players instance id, a string that defines just this player. Since the video events bubble, if you have multiple players you may need to filter out events from different players. If you set this value you can then filter by the player id. 
+\b \
+
+\b0 vidPlayer.playerID = "mainPlayer";\
+function videoComplete( e:BltVideoEvent ):void \
+\{\
+	// filtering by player id, if player is not "mainPlayer" it will get ignored. \
+	if( e.data.playerId != "mainPlayer" ) return;\
+	\
+	showVideoThumbs();\
+\}\
+\
+\pard\pardeftab720\sl288\slmult1
+
+\b \cf0 useLocalPath:Boolean = true\
+
+\b0 Media Mind will play videos locally off your hard drive but they require a full path from the root of the machine to the folder the videos are in. Provided your videos are in the same folder as your swf the player will get the full path to your swf folder and amend it to the video path so you can test all the videos locally without having to load it to Media Mind's servers. 
+\b \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 tuneInID:String\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This is used for setting a custom tuneIn id, the default is "default", should never have to change it but here you go. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 replayVideoNum:int\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This value only works if you used the addVideo method to add videos to the player. If you have an init video that plays mute and need to call replay with sound but don't pass a value or use the mute/unmute control to turn the sound on it will replay the video specified by this value. The addVideo method adds the videos to an array based on date id, this value represents a position on that array. 
+\b \
+
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 ignoreControls:Boolean = false\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This tells the player to ignore control events, if this is set to true the video controls will have no effect on the player. You can still call player controls directly, 
+\b vidPlayer.playVideo(); 
+\b0  will still work. This is important only if you have multiple players on the stage at one time. Like a background video animation, if the value is not set to true and you have a video player with controls on at the same time it could update the video controls on the main player. 
+\b \
+\
+bufferTime:Number = 1\
+
+\b0 Buffer is set to 1 second by default, if you want to change it just pass it. Time is in seconds.\
+vidPlayer.bufferTime = 3;\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 closeOnComplete:Boolean = false\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This tells the player to destroy itself and clean up after the video completes.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 videoSmoothing:Boolean = true\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 Sets the video smoothing value, it's true by default, not sure why you would want it false but it's there if you need to change it. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 loopVideoNum:int = -1\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This sets a loop value for a video, it will loop the video based on this value. After the specified loops are completed it will fire the 
+\b VIDEO_LOOP_COMPLETE 
+\b0 event, the 
+\b VIDEO_COMPLETE
+\b0  event will fire at the end of each loop. \
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------\
+
+\b\fs28 VIDEO PLAYER PUBLIC METHODS:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\fs24 \cf0 init():void
+\b0 \
+Once the the player is initialized and all the properties have been set then this needs to be called, this tells the player that it is cleared to set it self up. \
+\
+
+\b destroy():void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This method stops the video, clears the stream and video component along with clear it from memory. Once this is called the player will have to be completely re-initialized to be used again. This is also called when the video player target movie clip is removed from stage. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 addVideo( path:String, id:Number, reportingID:String = "video", day:String = "default" ):void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This method is used to add videos to the videoListManager. \
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth340\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9820\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth740\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+\cf0 \cell 
+\pard\intbl\itap1\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sb60\sa180\pardirnatural
+
+\b \cf0 \'95 path:
+\b0  path to the video, could be to a server or relative local path, also a streaming path minus the app path. \
+
+\b \'95 id: 
+\b0 This is the id that will be used to target the video once it is uploaded to Media Mind's servers. This value is ignored for local testing but will automatically be used when uploaded. \
+
+\b \'95 reportingID: 
+\b0 This value is for tracking events from the current video, all video events carry this value for the current video. \
+
+\b \'95 day:
+\b0  The videos are added to an array that is defined by the day value. If use tuneIn was selected the day value would correspond to the tuneIn id's. \cell 
+\pard\intbl\itap1\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+\cf0 \cell \lastrow\row
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+\cf0 \
+\pard\pardeftab720
+
+\b \cf0 addProgressEvent( time:Number, videoID:String, method:Function ):void\
+\pard\pardeftab720
+
+\b0 \cf0 This method allows you to add callbacks ( functions ) that get called when a video hits a certain point that is defined by the time value. The videoID allows you to define what video calls what callbacks. \
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth440\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9740\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth9360\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720
+\cf0 \
+
+\itap2\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth440\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth10480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth180\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720
+\cf0 \nestcell 
+\pard\intbl\itap2\pardeftab720\sb100\sa180
+\cf0 \'95 
+\b time: 
+\b0 a value between 0 and 1 that is a percent of the current video playback position.
+\b  
+\b0 If you pass 0.5 then it will fire when the video is 50% completed, 0.75 will fire at 75% completed. You can also pass time, "21" is 21 seconds, "1:21" is a minute and 21 seconds. To use time instead of a percentage ( 0 to 1 value ) the useTime value must be set to true.\
+\'95 
+\b videoID: 
+\b0 This is the videoReportingID that you pass using addVideo or loadAndPlay, this insures that these methods will only fire when that video is playing.  \
+\'95 
+\b method: 
+\b0 this is the callback function, when the video reaches the time value it will fire this function, it will also pass the time value that was hit when the function was called. So you can use one callback function and just parse out the result by the time value or have multiple callbacks, one for each event, just need to make sure to allow for a return number in the function, 'callback( time:Number = 0 )', if the return value is not include it will error. \
+\'95 
+\b useTime: 
+\b0 Set this to true in order to pass a time value instead of a percentage ( 0 to 1 value ) set this value to true, it is false by default. You can pass time as, "21" which is 21 seconds, or "1:21" which is a minute and 21 seconds.\nestcell 
+\pard\intbl\itap2\pardeftab720\sb100\sa180
+\cf0 \nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\sb60\sa180
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb60\sa180
+\cf0 \cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth440\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth9740\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth9360\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sb60\sa180
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb60\sa180
+\cf0 \cell 
+\pard\intbl\itap1\pardeftab720\sb60\sa180
+\cf0 \cell \lastrow\row
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 playInitVideo():void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This only works if videos have been added to the player using the addVideo method. This will play the first video in the video list of the current day. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 loadNewVideo( vid:int, initLoad:Boolean = true ):void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This method is also for use if videos were added using the addVideo method. When you call it you pass a value that defines which video to load from the current video list. The initLoad value defines if it's the first video which would be false, which only matters if video is starting muted. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 loadAndPlay( path:String, id:Number, reportingID:String = "default" ):void \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This method is for just adding a single video and having it play immediately. This is good if it's a background animation video, transition video, short video with no sound. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 loadAndPause( path:String, id:Number, reportingID:String = "default" ):void \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This method does the same as above accept the video waits for a command to play. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 replayVideo():void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 Replays current video, will not change sound value. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 replayWithSound( num:int = -1 ):void \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This method will replay the current video and turn the sound on, or you can pass a value to play a different video from the current video list, this will only work if videos were added to the player using the addVideo method. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 playVideo():void \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 Plays or resumes the currently loaded video. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 setVideoVolume( _vol:Number ):void \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This allows you to change the video volume, takes a value between 0 and 1, 0.5 would be 50%. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 muteAudio():void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 Mutes video.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 unmuteAudio():void \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 Unmutes video.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 pauseVideo():void \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 Pauses currently playing video, not a toggle, if video is already paused it will be ignored. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 stopVideo():void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This actually closes the current video stream, use only when done with the video. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 seekVideo( e:BltVideoEvent, _seek:Number = 0 ):void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 Normally this is called from the seek/progress bar component. If you wish to call it directly then pass null for the event and pass a value between 0 and 1 for the seek: 
+\b seekVideo( null, .5 ), 
+\b0 that will seek the video to 50%.\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 resetVideo():void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This will pause the video and send it back to the first frame. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 skipVideo( _skip:Number = .9 ):void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This is for testing, this when called will skip the currently playing video to a specified value, the default is 90% of it's current length. \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b \cf0 clearVideoPlayer():void\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0 \cf0 This will completely clean up the video player, removes it from the stage, this is also called when you call destroy. \
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------\
+
+\b\fs28 VIDEO PLAYER SET UP SINGLE VIDEO, STARTS MUTED:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0\fs24 \cf0 import com.blt.video.siteServed.MMVideoPlayerV2;\
+\
+var videoPlayer_mc:MovieClip = 
+\i path to video target movie clip
+\i0 \
+\
+var vidPlayer:MMVideoPlayerV2 = new MMVideoPlayerV2( videoPlayer_mc );\
+vidPlayer.ignoreControls = true;\
+\
+vidPlayer.init();\
+vidPlayer.loadAndPlay( "video1.flv", 1, "video1" );	\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------\
+
+\b\fs28 VIDEO PLAYER SET UP SINGLE VIDEO WITH EVENTS, STARTS MUTED:\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0\fs24 \cf0 import com.blt.video.mediamind.MMVideoPlayerV2;\
+import com.blt.events.BltVideoEvent;\
+\
+var videoPlayer_mc:MovieClip = 
+\i path to video target movie clip
+\b \
+
+\i0\b0 \
+var vidPlayer:MMVideoPlayerV2 = new MMVideoPlayerV2( videoPlayer_mc );\
+\
+vidPlayer.addEventListener( BltVideoEvent.VIDEO_COMPLETE, videoComplete );	\
+\
+vidPlayer.init();\
+vidPlayer.loadAndPlay( "video1.flv", 1, "video1" );	\
+\
+function videoComplete( e:BltVideoEvent ):void \
+\{\
+	trace( "VIDEO COMPLETE" );\
+\
+	// clean up video player\
+	vidPlayer.destroy();\
+	vidPlayer = null;\
+\
+	gotoAndPlay( "endframe" );	\
+\}\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------\
+
+\b\fs28 VIDEO PLAYER SET UP MULTIPLE VIDEOS, NOT DATE CODED, STARTS MUTED:
+\b0\fs24 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+\cf0 \
+import com.blt.video.mediamind.MMVideoPlayerV2;\
+\
+\
+var vidPlayer:MMVideoPlayerV2;\
+var videoTarget:MovieClip = videoComponent_mc.videoPlayer_mc;\
+\
+vidPlayer = new MMVideoPlayerV2( videoTarget );\
+	\
+vidPlayer.addVideo( "video1.flv",	1, "video1" );\
+vidPlayer.addVideo( "video2.flv",	2, "video2" );\
+vidPlayer.addVideo( "video3.flv",	3, "video3" );\
+vidPlayer.addVideo( "video4.flv",	4, "video4" );\
+\
+vidPlayer.init();\
+vidPlayer.playInitVideo();\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural\qc
+\cf0 ---------------------------------------------------------------------------------------------------------------------\
+
+\b\fs28 VIDEO PLAYER SET UP DATE CODED VIDEOS, DOES NOT START MUTED:
+\b0\fs24 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+\cf0 \
+import com.blt.video.mediamind.MMVideoPlayerV2;\
+\
+\
+var vidPlayer:MMVideoPlayerV2;\
+var videoTarget:MovieClip = videoComponent_mc.videoPlayer_mc;\
+\
+vidPlayer = new MMVideoPlayerV2( videoTarget, false, true );\
+	\
+// tonight videos\
+vidPlayer.addVideo( "video1.flv", 	1, "video1", "tonight" );\
+vidPlayer.addVideo( "video2.flv", 	2, "video2", "tonight" );\
+	\
+// tomorrow videos\
+vidPlayer.addVideo( "video1.flv", 	1, "video1", "tomorrow" );\
+vidPlayer.addVideo( "video2.flv", 	2, "video2", "tomorrow" );\
+		\
+// sunday videos\
+vidPlayer.addVideo( "video1.flv", 	1, "video1", "sunday" );\
+vidPlayer.addVideo( "video2.flv", 	2, "video2", "sunday" );\
+\
+vidPlayer.init();\
+vidPlayer.playInitVideo();\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b\fs44 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sl288\slmult1\pardirnatural
+
+\b0\fs24 \cf0 \
+\
+\
+\
+}
