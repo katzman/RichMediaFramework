@@ -1,6 +1,6 @@
-package com.blt.components
+package com.richMedia.components
 {
-	import com.blt.events.RmAdEvent;
+	import com.richMedia.events.RmAdEvent;
 	import com.google.ads.studio.display.StudioLoader;
 
 	import flash.display.Bitmap;

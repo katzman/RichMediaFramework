@@ -37,9 +37,10 @@ package com.richMedia.components
         private var mouseTargetMC    	: DisplayObject;
         private var timer               : Timer;
         private var rollOffTime         : Number;
+        private var isEnabled           : Boolean;
 
 		
-		public function ShowHideComponent( _target:DisplayObject, _mouseTarget:DisplayObject, _rollOffTime:Number = -1 )
+		public function ShowHideComponent( _target:DisplayObject, _mouseTarget:DisplayObject, _rollOffTime:Number = -1, _isEnabled:Boolean = true )
         {
 			if( !_target || !_mouseTarget )
 			{
@@ -53,8 +54,15 @@ package com.richMedia.components
             rollOffTime = _rollOffTime;
             mouseTargetMC = _mouseTarget;
             targetMC = _target;
+            isEnabled = _isEnabled;
 
             setListeners();
+        }
+
+
+        public function set enabled( value:Boolean ):void
+        {
+            isEnabled = value;
         }
 		
 		
@@ -62,12 +70,17 @@ package com.richMedia.components
 		{
 			removeListeners();
 			targetMC = null;
+            mouseTargetMC = null;
 		}
 
 
 		private function updateControls( e:MouseEvent ):void 
 		{
+            if( !isEnabled ) return;
+
             startTimer();
+
+            //trace( "TARGET MC WIDTH :: " + targetMC.width + "   MOUSE X :: " + targetMC.mouseX );
 
             if( targetMC.mouseX > 0 && targetMC.mouseX < targetMC.width && targetMC.mouseY > 0 && targetMC.mouseY < targetMC.height )
 			{
@@ -118,14 +131,14 @@ package com.richMedia.components
         private function setListeners():void
         {
             mouseTargetMC.addEventListener( MouseEvent.MOUSE_MOVE, updateControls );
-            mouseTargetMC.addEventListener( Event.REMOVED_FROM_STAGE, destroy );
+            targetMC.addEventListener( Event.REMOVED_FROM_STAGE, destroy );
         }
 		
 		
 		private function removeListeners():void 
 		{
-            mouseTargetMC.removeEventListener( Event.REMOVED_FROM_STAGE, destroy );
             mouseTargetMC.removeEventListener( MouseEvent.MOUSE_MOVE, updateControls );
+            targetMC.removeEventListener( Event.REMOVED_FROM_STAGE, destroy );
 		}
     }
 }

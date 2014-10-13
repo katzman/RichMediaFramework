@@ -81,6 +81,7 @@ package com.richMedia.video
 					break;
 
 				case RmVideoEvent.VIDEO_PLAYING:
+                case RmVideoEvent.PLAY_WITH_SOUND_CALLED:
 					playBtn_mc.visible = false;
 					pauseBtn_mc.visible = true;
 					isPaused = false;
@@ -143,6 +144,7 @@ package com.richMedia.video
 			broadcaster.addEventListener( RmVideoEvent.VIDEO_COMPLETE, updateBtn );
 			broadcaster.addEventListener( RmVideoEvent.VIDEO_PAUSED,   updateBtn );
 			broadcaster.addEventListener( RmVideoEvent.VIDEO_PLAYING,  updateBtn );
+            broadcaster.addEventListener( RmVideoEvent.PLAY_WITH_SOUND_CALLED,  updateBtn );
 			broadcaster.addEventListener( RmVideoEvent.VIDEO_STOPPED,  updateBtn );
 		}
 
@@ -157,6 +159,7 @@ package com.richMedia.video
 			broadcaster.removeEventListener( RmVideoEvent.VIDEO_COMPLETE, updateBtn );
 			broadcaster.removeEventListener( RmVideoEvent.VIDEO_PAUSED,   updateBtn );
 			broadcaster.removeEventListener( RmVideoEvent.VIDEO_PLAYING,  updateBtn );
+            broadcaster.removeEventListener( RmVideoEvent.PLAY_WITH_SOUND_CALLED,  updateBtn );
 			broadcaster.removeEventListener( RmVideoEvent.VIDEO_STOPPED,  updateBtn );
 		}
 	}

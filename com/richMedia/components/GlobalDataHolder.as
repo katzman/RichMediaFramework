@@ -8,7 +8,7 @@
  * */
 
 
-package com.blt.components
+package com.richMedia.components
 {
 
 

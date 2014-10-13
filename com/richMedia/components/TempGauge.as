@@ -1,4 +1,4 @@
-package com.blt.components
+package com.richMedia.components
 {
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Cubic;

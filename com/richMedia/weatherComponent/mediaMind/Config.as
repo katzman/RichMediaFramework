@@ -1,6 +1,6 @@
-package com.blt.weatherComponent.mediaMind
+package com.richMedia.weatherComponent.mediaMind
 {
-    import com.blt.weatherComponent.mediaMind.WeatherBlock;
+    import com.richMedia.weatherComponent.mediaMind.WeatherBlock;
 
 
 	public class Config	
