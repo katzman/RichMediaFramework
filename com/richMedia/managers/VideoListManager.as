@@ -8,7 +8,6 @@
 
 package com.richMedia.managers
 {
-	import com.richMedia.components.*;
 	import com.richMedia.constants.Constants;
 	import com.richMedia.video.vo.VideoVO;
 	import com.richMedia.components.TuneIn;
@@ -39,16 +38,19 @@ package com.richMedia.managers
 		 * this method creates a generic object which adds
 		 * videos based on their date code in an array.
 		 */
-		public function addVideo( day:String, path:String, reportingID:String = "", id:Number = -1 ):void
+		public function addVideo( day:String, pathHigh:String, pathMid:String = "", pathLow:String = "", reportingID:String = "", id:Number = -1 ):void
 		{
 			if( !useTuneIn ) day = Constants.TUNEIN_DEFAULT_ID;
 			if( !videoList ) videoList = {};
 			if( !videoList[day] ) videoList[day] = [];
 
-			var videoVO:VideoVO = new VideoVO();
-			videoVO.videoID = id;
-			videoVO.videoPath = path;
-			videoVO.videoReportingID = reportingID;
+			var videoVO:VideoVO         = new VideoVO();
+			videoVO.videoID             = id;
+			videoVO.videoPath           = pathHigh || pathMid || pathLow;
+            videoVO.videoPathHigh       = pathHigh;
+            videoVO.videoPathMid        = pathMid;
+            videoVO.videoPathLow        = pathLow;
+			videoVO.videoReportingID    = reportingID;
 
 			videoList[day].push( videoVO );
 		}
