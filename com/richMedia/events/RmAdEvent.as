@@ -22,6 +22,8 @@ package com.richMedia.events
         public static const CLICK_FIRED			: String = "clickFired";
         public static const TUNEIN_READY	    : String = "tuneInReady";
 
+        public static const SLIDER_UPDATED	    : String = "sliderUpdated";
+
 		public var data							: Object;
 	
 		
