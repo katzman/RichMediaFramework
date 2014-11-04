@@ -11,6 +11,7 @@ package com.richMedia.components
 	import flash.events.Event;
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
+    import flash.system.SecurityDomain;
 
 
 	public class RmAssetLoader extends EventDispatcher
@@ -32,6 +33,7 @@ package com.richMedia.components
 		{
 			context  = new LoaderContext();
 			context.applicationDomain = ApplicationDomain.currentDomain;
+            context.securityDomain = SecurityDomain.currentDomain;
 		}
 
 
