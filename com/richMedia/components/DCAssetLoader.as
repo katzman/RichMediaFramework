@@ -4,6 +4,7 @@ package com.richMedia.components
 	import com.google.ads.studio.display.StudioLoader;
 
 	import flash.display.Bitmap;
+	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.events.EventDispatcher;
 	import flash.events.IOErrorEvent;
@@ -44,11 +45,12 @@ package com.richMedia.components
 			urlReq      = new URLRequest( _path );
 
 			loader.contentLoaderInfo.addEventListener( Event.COMPLETE, swfLoadComplete );
+			loader.contentLoaderInfo.addEventListener( IOErrorEvent.IO_ERROR, loadError );
 			loader.load( urlReq, context );
 		}
 
 
-		public function loadBitmap( _path:String, _target:MovieClip ):void
+		public function loadBitmap( _path:String, _target:MovieClip = null ):void
 		{
 			targetMC = _target;
 
@@ -62,9 +64,24 @@ package com.richMedia.components
 		}
 
 
+		public function loadItem( _path:String, _target:MovieClip ):void
+		{
+			targetMC = _target;
+
+			loader   = new StudioLoader();
+			urlReq   = new URLRequest( _path );
+
+			loader.contentLoaderInfo.addEventListener( Event.COMPLETE, itemLoadComplete );
+			loader.contentLoaderInfo.addEventListener( IOErrorEvent.IO_ERROR, loadError );
+
+			loader.load( urlReq, context );
+		}
+
+
 		private function loadError( e:IOErrorEvent ):void
 		{
 			trace( "LOAD ERROR :: " + e );
+			dispatchEvent( new RmAdEvent( RmAdEvent.ASSET_LOAD_ERROR, asset ));
 		}
 
 
@@ -72,10 +89,10 @@ package com.richMedia.components
 		{
 			trace( "\n\nASSET LOADER DESTROY CALLED\n\n" );
 
-			loader.unload();
+			if( loader ) loader.unload();
 
-			if( bitmap && targetMC.contains( bitmap )) targetMC.removeChild( bitmap );
-			if( asset && targetMC.contains( asset )) targetMC.removeChild( asset );
+			if( bitmap && targetMC && targetMC.contains( bitmap )) targetMC.removeChild( bitmap );
+			if( asset && targetMC && targetMC.contains( asset )) targetMC.removeChild( asset );
 
 			loader = null;
 			urlReq = null;
@@ -86,11 +103,18 @@ package com.richMedia.components
 		}
 
 
+		private function itemLoadComplete( e:Event ):void
+		{
+			targetMC.addChild( loader );
+			dispatchEvent( new RmAdEvent( RmAdEvent.ASSET_LOAD_COMPLETE, loader ));
+		}
+
+
 		private function swfLoadComplete( e:Event )
 		{
 			asset = e.target.content as MovieClip;
 			passParams();
-			targetMC.addChild( asset );
+			if( targetMC ) targetMC.addChild( asset );
 
 			dispatchEvent( new RmAdEvent( RmAdEvent.ASSET_LOAD_COMPLETE, asset ));
 		}
@@ -99,7 +123,7 @@ package com.richMedia.components
 		private function bitmapLoadComplete( e:Event )
 		{
 			bitmap = e.target.content as Bitmap;
-			targetMC.addChild( bitmap );
+			if( targetMC ) targetMC.addChild( bitmap );
 
 			dispatchEvent( new RmAdEvent( RmAdEvent.ASSET_LOAD_COMPLETE, bitmap ));
 		}

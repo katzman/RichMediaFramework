@@ -10,7 +10,7 @@ package com.richMedia.managers
 {
 	import com.richMedia.constants.Constants;
 	import com.richMedia.video.vo.VideoVO;
-	import com.richMedia.components.TuneIn;
+	import com.richMedia.dateUtils.TuneIn;
 
 
 	public class VideoListManager
@@ -45,7 +45,7 @@ package com.richMedia.managers
 			if( !videoList[day] ) videoList[day] = [];
 
 			var videoVO:VideoVO         = new VideoVO();
-			videoVO.videoID             = id;
+			//videoVO.videoID             = id;
 			videoVO.videoPath           = pathHigh || pathMid || pathLow;
             videoVO.videoPathHigh       = pathHigh;
             videoVO.videoPathMid        = pathMid;
@@ -77,6 +77,33 @@ package com.richMedia.managers
 			}
 
 			return videoArray[pos];
+		}
+
+
+		/**
+		 * Returns video object by tunin date and position value.
+		 */
+		public function getCurrentVideoByID( id:String ):Object
+		{
+			if( !videoArray )
+			{
+				trace("ALARM!!! ::: GET CURRENT VIDEO CALLED : VIDEO ARRAY IS NULL. Make sure videos have been added before playing video." );
+				return null;
+			}
+
+			var length:uint = videoArray.length;
+			var videoVO:VideoVO;
+
+			for( var i:uint = 0; i < length; i++ )
+			{
+				videoVO = videoArray[i];
+				if( videoVO.videoReportingID == id )
+				{
+					return { vo:videoVO, num:i };
+				}
+			}
+
+			return null;
 		}
 
 

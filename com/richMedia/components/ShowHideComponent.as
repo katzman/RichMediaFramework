@@ -80,8 +80,6 @@ package com.richMedia.components
 
             startTimer();
 
-            //trace( "TARGET MC WIDTH :: " + targetMC.width + "   MOUSE X :: " + targetMC.mouseX );
-
             if( targetMC.mouseX > 0 && targetMC.mouseX < targetMC.width && targetMC.mouseY > 0 && targetMC.mouseY < targetMC.height )
 			{
 				overItem();
@@ -117,12 +115,14 @@ package com.richMedia.components
 
 		private function overItem():void
 		{
+            if( !isEnabled ) return;
             if( targetMC ) targetMC.dispatchEvent( new Event( OVER, true ));
 		}
 		
 		
 		private function offItem( e:TimerEvent = null ):void
 		{
+            if( !isEnabled ) return;
             clearTimer();
             if( targetMC ) targetMC.dispatchEvent( new Event( OFF, true ));
 		}

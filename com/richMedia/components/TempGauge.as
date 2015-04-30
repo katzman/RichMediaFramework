@@ -235,7 +235,6 @@ package com.richMedia.components
 			
 			if ( !initComplete || mouseOffStage ) return;
 			
-			var direction:String;
 			if ( upBtn.hitTestPoint(gaugeComponent.stage.mouseX, gaugeComponent.stage.mouseY))
 			{
 				scrollValue = -scrollSpeed;

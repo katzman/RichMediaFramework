@@ -31,7 +31,7 @@ package com.richMedia.managers
 		{
 			if( !time ) 
 			{
-				trace( "ALARM!!! ADD PROGRESS EVENT MUST INCLUDE A VALID NUMBER BETWEEN 0 AND 1" );
+				trace( "ALARM!!! ADD PROGRESS EVENT MUST INCLUDE A VALID NUMBER BETWEEN 0 AND 1 OR TIME AS STRING" );
 				return;
 			}
 			

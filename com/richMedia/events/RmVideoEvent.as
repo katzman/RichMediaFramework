@@ -7,25 +7,26 @@ package com.richMedia.events
 	public class RmVideoEvent extends Event
 	{
         // video player update events
-        public static const VIDEO_PROGRESS			:String = "videoProgress";
-		public static const VIDEO_UNMUTED			:String = "videoUnmuted";
-		public static const VIDEO_MUTED			    :String = "videoMuted";
-		public static const VIDEO_ERROR				:String = "videoError";
-		public static const	VIDEO_STOPPED			:String = "videoStopped";
-		public static const	VIDEO_COMPLETE			:String = "videoComplete";
-		public static const	VIDEO_LOOP_COMPLETE		:String = "videoLoopComplete";
-		public static const VIDEO_STARTED			:String = "videoStarted";
-        public static const VIDEO_CLEARED			:String = "videoCleared";
-		public static const VIDEO_PAUSED			:String = "videoPaused";
-        public static const VIDEO_PLAYING           :String = "videoPlaying";
-		public static const VIDEO_RESUMED			:String = "videoResumed";
-		public static const VIDEO_BUFFER_EMPTY		:String = "videoBufferEmpty";
-		public static const VIDEO_BUFFER_FULL		:String = "videoBufferFull";
-		public static const VIDEO_READY				:String = "videoReady";
-        public static const VIDEO_LOADED            :String = "videoLoaded";
-		public static const VIDEO_ON_CUEPOINT   	:String = "onCuePoint";
-		public static const UPDATE_VIDEO_ID		    :String = "updateVideoID";
-		public static const VIDEO_UPDATED		    :String = "videoUpdated";
+        public static const VIDEO_PROGRESS			:String = "progress";
+		public static const VIDEO_UNMUTED			:String = "unmuted";
+		public static const VIDEO_MUTED			    :String = "muted";
+		public static const VIDEO_ERROR				:String = "error";
+		public static const	VIDEO_STOPPED			:String = "stopped";
+		public static const	VIDEO_COMPLETE			:String = "complete";
+		public static const	VIDEO_LOOP_COMPLETE		:String = "loop complete";
+		public static const VIDEO_STARTED			:String = "started";
+        public static const VIDEO_CLEARED			:String = "cleared";
+		public static const VIDEO_PAUSED			:String = "paused";
+        public static const VIDEO_PLAYING           :String = "playing";
+		public static const VIDEO_RESUMED			:String = "resumed";
+		public static const VIDEO_BUFFER_EMPTY		:String = "buffer empty";
+		public static const VIDEO_BUFFER_FULL		:String = "buffer full";
+		public static const VIDEO_READY				:String = "ready";
+        public static const VIDEO_LOADED            :String = "loaded";
+		public static const VIDEO_ON_CUEPOINT   	:String = "cue point";
+		public static const UPDATE_VIDEO_ID		    :String = "update video id";
+		public static const VIDEO_UPDATED		    :String = "updated";
+        public static const VIDEO_REPLAYING		    :String = "replaying";
 
         public static const VIDEO_BYTES_LOADED		:String = "bytesLoaded";
 

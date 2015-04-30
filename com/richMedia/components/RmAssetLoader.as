@@ -29,11 +29,11 @@ package com.richMedia.components
 		private var asset       : MovieClip;
 
 
-		public function RmAssetLoader()
+		public function RmAssetLoader( _useSecurity:Boolean = false, _sameDomain:Boolean = false )
 		{
 			context  = new LoaderContext();
-			context.applicationDomain = ApplicationDomain.currentDomain;
-            context.securityDomain = SecurityDomain.currentDomain;
+			if( _sameDomain ) context.applicationDomain = ApplicationDomain.currentDomain;
+            if( _useSecurity ) context.securityDomain = SecurityDomain.currentDomain;
 		}
 
 
@@ -88,7 +88,7 @@ package com.richMedia.components
 
 		private function swfLoadComplete( e:Event )
 		{
-			asset = e.target.content as MovieClip;
+            asset = e.target.content as MovieClip;
 			passParams();
 			targetMC.addChild( asset );
 
@@ -114,7 +114,6 @@ package com.richMedia.components
 			for ( prop in params )
 			{
 				trace( "PROP :: " + prop + "  VALUE :: " + params[prop] );
-
 				asset[prop] = params[prop];
 			}
 		}

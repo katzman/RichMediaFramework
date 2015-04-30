@@ -11,6 +11,7 @@ package com.richMedia.video
 {
 	import com.richMedia.constants.Constants;
 	import com.richMedia.events.RmVideoEvent;
+	import com.richMedia.managers.NotificationManager;
 
 	import flash.display.MovieClip;
 	import com.richMedia.events.EventBroadcaster;
@@ -28,7 +29,7 @@ package com.richMedia.video
 		public var pauseBtn_mc  : MovieClip;
 
 		private var isPaused    : Boolean;
-		private var broadcaster : EventBroadcaster;
+		//private var broadcaster : EventBroadcaster;
 
 
 		public function PlayPauseBtnComponent()
@@ -42,7 +43,7 @@ package com.richMedia.video
 		{
 			removeEventListener( Event.ADDED_TO_STAGE, init );
 
-			broadcaster = EventBroadcaster.getInstance();
+			//broadcaster = EventBroadcaster.getInstance();
 			setListeners();
 
 			this.mouseChildren = false;
@@ -60,17 +61,17 @@ package com.richMedia.video
 		{
 			removeListeners();
 
-			broadcaster = null;
+			//broadcaster = null;
 			playBtn_mc  = null;
 			pauseBtn_mc = null;
 		}
 
 
-		private function updateBtn( e:RmVideoEvent ):void
+		private function updateBtn(  obj:Object  ):void
 		{
-			if( e.data.playerID != playerID ) return;
+			if( obj.data.playerID != playerID ) return;
 
-			switch( e.type )
+			switch( obj.interest )
 			{
 				case RmVideoEvent.VIDEO_COMPLETE:
 				case RmVideoEvent.VIDEO_PAUSED:
@@ -112,13 +113,13 @@ package com.richMedia.video
 
 		private function playVideo():void
 		{
-			broadcaster.dispatchEvent( new RmVideoEvent( RmVideoEvent.PLAY_VIDEO, {playerID:playerID} ));
+			NotificationManager.sendNotification( RmVideoEvent.PLAY_VIDEO, {playerID:playerID} );
 		}
 
 
 		private function pauseVideo():void
 		{
-			broadcaster.dispatchEvent( new RmVideoEvent( RmVideoEvent.PAUSE_VIDEO, {playerID:playerID} ));
+			NotificationManager.sendNotification( RmVideoEvent.PAUSE_VIDEO, {playerID:playerID} );
 		}
 
 
@@ -141,11 +142,11 @@ package com.richMedia.video
 			addEventListener( MouseEvent.ROLL_OVER,     btnEvent );
 			addEventListener( MouseEvent.ROLL_OUT,      btnEvent );
 
-			broadcaster.addEventListener( RmVideoEvent.VIDEO_COMPLETE, updateBtn );
-			broadcaster.addEventListener( RmVideoEvent.VIDEO_PAUSED,   updateBtn );
-			broadcaster.addEventListener( RmVideoEvent.VIDEO_PLAYING,  updateBtn );
-            broadcaster.addEventListener( RmVideoEvent.PLAY_WITH_SOUND_CALLED,  updateBtn );
-			broadcaster.addEventListener( RmVideoEvent.VIDEO_STOPPED,  updateBtn );
+			NotificationManager.regisiterNotificationInterest( RmVideoEvent.VIDEO_COMPLETE, updateBtn );
+			NotificationManager.regisiterNotificationInterest( RmVideoEvent.VIDEO_PAUSED, updateBtn );
+			NotificationManager.regisiterNotificationInterest( RmVideoEvent.VIDEO_PLAYING, updateBtn );
+			NotificationManager.regisiterNotificationInterest( RmVideoEvent.VIDEO_STOPPED, updateBtn );
+			NotificationManager.regisiterNotificationInterest( RmVideoEvent.PLAY_WITH_SOUND_CALLED, updateBtn );
 		}
 
 
@@ -156,11 +157,11 @@ package com.richMedia.video
 			removeEventListener( MouseEvent.ROLL_OVER,      btnEvent );
 			removeEventListener( MouseEvent.ROLL_OUT,       btnEvent );
 
-			broadcaster.removeEventListener( RmVideoEvent.VIDEO_COMPLETE, updateBtn );
-			broadcaster.removeEventListener( RmVideoEvent.VIDEO_PAUSED,   updateBtn );
-			broadcaster.removeEventListener( RmVideoEvent.VIDEO_PLAYING,  updateBtn );
-            broadcaster.removeEventListener( RmVideoEvent.PLAY_WITH_SOUND_CALLED,  updateBtn );
-			broadcaster.removeEventListener( RmVideoEvent.VIDEO_STOPPED,  updateBtn );
+			NotificationManager.removeNotificationInterest( RmVideoEvent.VIDEO_COMPLETE, updateBtn );
+			NotificationManager.removeNotificationInterest( RmVideoEvent.VIDEO_PAUSED, updateBtn );
+			NotificationManager.removeNotificationInterest( RmVideoEvent.VIDEO_PLAYING, updateBtn );
+			NotificationManager.removeNotificationInterest( RmVideoEvent.VIDEO_STOPPED, updateBtn );
+			NotificationManager.removeNotificationInterest( RmVideoEvent.PLAY_WITH_SOUND_CALLED, updateBtn );
 		}
 	}
 }

@@ -54,7 +54,6 @@ package com.richMedia.components
         {
             removeListeners();
 
-            sliderLimit     = null;
             sliderRect      = null;
             sliderBtn_mc    = null;
             bar_mc          = null;

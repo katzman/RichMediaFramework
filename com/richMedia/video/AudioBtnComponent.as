@@ -11,6 +11,7 @@ package com.richMedia.video
 {
 	import com.richMedia.constants.Constants;
 	import com.richMedia.events.RmVideoEvent;
+	import com.richMedia.managers.NotificationManager;
 
 	import flash.display.MovieClip;
 	import com.richMedia.events.EventBroadcaster;
@@ -25,7 +26,7 @@ package com.richMedia.video
 		public var playerID         : String = Constants.PLAYER_DEFAULT_ID;
 
 		private var isMuted         : Boolean;
-		private var broadcaster     : EventBroadcaster;
+		//private var broadcaster     : EventBroadcaster;
 
 
 		public function AudioBtnComponent()
@@ -39,7 +40,7 @@ package com.richMedia.video
 		{
 			removeEventListener( Event.ADDED_TO_STAGE, init );
 
-			broadcaster = EventBroadcaster.getInstance();
+			//broadcaster = EventBroadcaster.getInstance();
 			audioToggle_mc = this["audioToggle_mc"];
 
 			this.buttonMode = true;
@@ -52,16 +53,18 @@ package com.richMedia.video
 		{
 			removeListeners();
 
-			broadcaster = null;
+			//broadcaster = null;
 			audioToggle_mc = null;
 		}
 
 
-		private function updateBtn( e:RmVideoEvent ):void
+		private function updateBtn( obj:Object ):void
 		{
-			if( e.data.playerID != playerID ) return;
+			trace( "UPDATE SOUND BUTTON CALLED :: PLAYER ID: " + playerID + "    EVENT PLAYER ID: " + obj.data.playerID + "    EVENT TYPE: " + obj.interest );
 
-			switch( e.type )
+			if( obj.data.playerID != playerID ) return;
+
+			switch( obj.interest )
 			{
 				case RmVideoEvent.VIDEO_MUTED:
 					audioToggle_mc.gotoAndStop ( "off" );
@@ -98,13 +101,15 @@ package com.richMedia.video
 
 		private function unMute():void
 		{
-			broadcaster.dispatchEvent( new RmVideoEvent( RmVideoEvent.UNMUTE_VIDEO, {playerID:playerID} ));
+			//broadcaster.dispatchEvent( new RmVideoEvent( RmVideoEvent.UNMUTE_VIDEO, {playerID:playerID} ));
+			NotificationManager.sendNotification( RmVideoEvent.UNMUTE_VIDEO, {playerID:playerID} );
 		}
 
 
 		private function mute():void
 		{
-			broadcaster.dispatchEvent( new RmVideoEvent( RmVideoEvent.MUTE_VIDEO, {playerID:playerID} ));
+			//broadcaster.dispatchEvent( new RmVideoEvent( RmVideoEvent.MUTE_VIDEO, {playerID:playerID} ));
+			NotificationManager.sendNotification( RmVideoEvent.MUTE_VIDEO, {playerID:playerID} );
 		}
 
 
@@ -122,23 +127,23 @@ package com.richMedia.video
 
 		private function setListeners():void
 		{
-			broadcaster.addEventListener( RmVideoEvent.VIDEO_MUTED,    updateBtn );
-			broadcaster.addEventListener( RmVideoEvent.VIDEO_UNMUTED,  updateBtn );
-
 			addEventListener( MouseEvent.CLICK,     btnEvent );
 			addEventListener( MouseEvent.ROLL_OVER, btnEvent );
 			addEventListener( MouseEvent.ROLL_OUT,  btnEvent );
+
+			NotificationManager.regisiterNotificationInterest( RmVideoEvent.VIDEO_MUTED, updateBtn );
+			NotificationManager.regisiterNotificationInterest( RmVideoEvent.VIDEO_UNMUTED, updateBtn );
 		}
 
 
 		private function removeListeners():void
 		{
-			broadcaster.removeEventListener( RmVideoEvent.VIDEO_MUTED,     updateBtn );
-			broadcaster.removeEventListener( RmVideoEvent.VIDEO_UNMUTED,   updateBtn );
-
 			removeEventListener( MouseEvent.CLICK,      btnEvent );
 			removeEventListener( MouseEvent.ROLL_OVER,  btnEvent );
 			removeEventListener( MouseEvent.ROLL_OUT,   btnEvent );
+
+			NotificationManager.removeNotificationInterest( RmVideoEvent.VIDEO_MUTED, updateBtn );
+			NotificationManager.removeNotificationInterest( RmVideoEvent.VIDEO_UNMUTED, updateBtn );
 		}
 	}
 }
